@@ -1,5 +1,6 @@
 package com.bridgelabz.userregistration;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -11,15 +12,20 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class EmailTest
 {
-    public String mail;
-    public boolean expectedResult;
+    private String emailTest;
+    private boolean expectedResult;
+    private UserRegistrationMain validateEmail;
 
-
-    void EmailTest(String mail, boolean expectedResult) {
-        this.mail = mail;
+    public EmailTest(String email, boolean expectedResult) {
+        this.emailTest = email;
         this.expectedResult = expectedResult;
     }
 
+    @Before
+    public void initialize() {
+        validateEmail = new UserRegistrationMain();
+    }
+    
     @Parameterized.Parameters
     public static Collection emailExpectedResult() {
         return Arrays.asList(new Object[][]{
@@ -49,9 +55,7 @@ public class EmailTest
     }
 
     @Test
-    void givenEmailIds_withExpectedResult_shouldPassAllTestCases() {
-        UserRegistrationMain user = new UserRegistrationMain();
-        boolean result = user.email(this.mail);
-        Assertions.assertEquals(this.expectedResult, result);
+    public void givenEmailAsVar_ShouldReturnTrueOrFalse() {
+        Assertions.assertEquals(expectedResult, validateEmail.email(emailTest));
     }
 }
