@@ -3,32 +3,51 @@ package com.bridgelabz.userregistration;
 import java.util.regex.Pattern;
 
 public class UserRegistrationMain {
-    private static final String NAME = "^[A-Z][a-z]{2,}$";
-    private static final String EMAIL = "^(abc)[.][a-z]+@(bl)[.](co)[.][a-z]+$";
-    private static final String PHONE_NUMBER = "^\\d{2}\\s\\d{10}$";
-    private static final String PASSWORD = "^(?=.*[A-Z])(?=.*[a-z])(?=[^!@#$%^&+=]*[!@#$%^&+=][^!@#$%^&+=]*$)(?=.*\\d).{8,}$";
-
-    public boolean firstNameValidate(String fName)
-    {
-        return Pattern.matches(NAME, fName);
-    }
-    public boolean lastNameValidate(String lName)
-    {
-        return Pattern.matches(NAME, lName);
+    public boolean firstName(String name) {
+        Pattern pattern = Pattern.compile("^[A-Z]{1}[a-z]{3,}$");
+        return pattern.matcher(name).matches();
     }
 
-    public boolean emailValidate(String email)
-    {
-        return Pattern.matches(EMAIL, email);
+
+    public boolean lastName (String name) {
+        Pattern pattern = Pattern.compile("^[A-Z]{1}[a-z]{3,}$");
+        return pattern.matcher(name).matches();
     }
 
-    public boolean phoneNumberValidate(String phNum)
-    {
-        return Pattern.matches(PHONE_NUMBER, phNum);
+
+
+    public boolean email (String mail) {
+        Pattern pattern = Pattern.compile("^[a-z0-9-+]*[.]{0,1}[0-9a-z]@[a-z0-9]+([.][a-z.]+){1,2}$");
+        return pattern.matcher(mail).matches();
     }
 
-    public boolean passwordValidate(String pw)
-    {
-        return Pattern.matches(PASSWORD, pw);
+
+
+    public boolean mobileNumber (String mobNum) {
+        Pattern pattern = Pattern.compile("^[0-9]{2}\s[0-9]{10}$");
+        return pattern.matcher(mobNum).matches();
+    }
+
+    public boolean ruleOne (String password){
+        Pattern pattern = Pattern.compile("^[a-zA-Z]{8,}$");
+        return pattern.matcher(password).matches();
+    }
+
+
+    public boolean ruleTwo (String password){
+        Pattern pattern = Pattern.compile("^[a-zA-Z]{1,}[a-zA-Z]{7,}$");
+        return pattern.matcher(password).matches();
+    }
+
+
+    public boolean ruleThird (String password){
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{1,}[a-zA-Z0-9]{7,}$");
+        return pattern.matcher(password).matches();
+    }
+
+
+    public boolean ruleFourth (String password){
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9@$!%*#?&]{1,}[a-zA-Z0-9@$!%*#?&]{7,}$");
+        return pattern.matcher(password).matches();
     }
 }
